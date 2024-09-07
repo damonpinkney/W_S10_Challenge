@@ -11,7 +11,7 @@ async function order({ request }) {
   return response
 }
 
-async function history({ request }) {
+async function history() {
   await delay(10)
   const { data } = Pizza.getHistory()
   return HttpResponse.json(data)
