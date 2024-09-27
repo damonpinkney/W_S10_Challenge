@@ -12,7 +12,7 @@ const PizzaForm = () => {
     const orderPayload = {
       fullName,
       size,
-      toppings
+      toppings,
     };
     dispatch(createOrder(orderPayload));
   };
