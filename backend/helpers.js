@@ -10,7 +10,7 @@ const e = {
   fullNameRequired: 'fullName is required',
   fullNameMin: 'fullName must be at least 3 characters',
   fullNameMax: 'fullName cannot exceed 20 characters',
-  sizeRequired: 'size is required',
+  sizeRequired: "size is required",
   sizeOptions: 'size must be one of the following values: S, M, L',
   toppingsRequired: 'toppings is required',
   toppingsType: 'toppings must be an array of IDs',
