@@ -27,7 +27,7 @@ const toppings = [
 ]
 
 const sizes = {
-  S: 'small',
+  S: 'Small',
   M: 'medium',
   L: 'large',
 }
