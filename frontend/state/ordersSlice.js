@@ -4,6 +4,7 @@ import axios from 'axios';
 export const fetchOrders = createAsyncThunk('orders/fetchOrders', async () => {
   const response = await axios.get('http://localhost:9009/api/pizza/history');
   return response.data;
+  
 });
 
 const ordersSlice = createSlice({

@@ -1,20 +1,19 @@
+// state/store.js
 import { configureStore } from '@reduxjs/toolkit';
 import ordersReducer from './ordersSlice';
-import filterReducer from './filterSlice';
 import pizzaFormReducer from './pizzaFormSlice';
+import filterReducer from './filterSlice';
 
-const rootReducer = {
-  orders: ordersReducer,
-  filter: filterReducer,
-  pizzaForm: pizzaFormReducer,
-};
-
-const store = configureStore({
-  reducer: rootReducer,
+const createStore = () => configureStore({
+  reducer: {
+    orders: ordersReducer,
+    pizzaForm: pizzaFormReducer,
+    filter: filterReducer,
+  },
 });
 
-export const resetStore = () => configureStore({
-  reducer: rootReducer,
-});
+export const resetStore = createStore;
+
+const store = createStore();
 
 export default store;

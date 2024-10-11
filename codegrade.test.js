@@ -15,8 +15,12 @@ const queryOptions = { exact: false }
 beforeAll(() => { server.listen() })
 afterAll(() => { server.close() })
 beforeEach(() => {
-  render(<Provider store={resetStore()}><App /></Provider>)
-})
+  render(
+  <Provider store={resetStore()}>
+    <App />
+    </Provider>
+    );
+});
 afterEach(() => {
   reset()
   server.resetHandlers()

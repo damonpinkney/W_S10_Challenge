@@ -1,34 +1,39 @@
-// frontend/state/orderSlice.js
+// state/ordersSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 
-export const fetchOrderHistory = createAsyncThunk('orders/fetchOrderHistory', async () => {
-  const response = await axios.get('http://localhost:9009/api/pizza/history');
-  return response.data;
+// Thunk to fetch orders from the API
+export const fetchOrders = createAsyncThunk('orders/fetchOrders', async () => {
+  const response = await fetch('http://localhost:9009/api/pizza/history');
+  const data = await response.json();
+  return data;
 });
 
-export const orderSlice = createSlice({
+const ordersSlice = createSlice({
   name: 'orders',
   initialState: {
-    history: [],
-    status: 'idle',
+    orders: [],
+    status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
     error: null,
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchOrderHistory.pending, (state) => {
+      // Handle pending state
+      .addCase(fetchOrders.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(fetchOrderHistory.fulfilled, (state, action) => {
+      // Handle fulfilled state
+      .addCase(fetchOrders.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.history = action.payload;
+        // Add fetched orders to the state
+        state.orders = action.payload;
       })
-      .addCase(fetchOrderHistory.rejected, (state, action) => {
+      // Handle rejected state
+      .addCase(fetchOrders.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       });
   },
 });
 
-export default orderSlice.reducer;
+export default ordersSlice.reducer;
