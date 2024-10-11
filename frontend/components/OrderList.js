@@ -30,12 +30,13 @@ const OrderList = () => {
         <ol>
           {filteredOrders.map((order) => {
             const toppingsCount = order.toppings ? order.toppings.length : 0;
+            const toppingsText =
+              toppingsCount === 0
+                ? 'no toppings'
+                : `${toppingsCount} topping${toppingsCount > 1 ? 's' : ''}`;
             return (
               <li key={order.id}>
-                <strong>{order.customer}</strong> ordered a size {order.size} pizza with{' '}
-                {toppingsCount === 0
-                  ? 'no toppings'
-                  : `${toppingsCount} topping${toppingsCount > 1 ? 's' : ''}`}
+                {order.customer} ordered a size {order.size} with {toppingsText}
               </li>
             );
           })}

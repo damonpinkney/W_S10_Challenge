@@ -63,7 +63,6 @@ const pizzaFormSlice = createSlice({
       .addCase(createOrder.fulfilled, (state) => {
         state.status = 'succeeded';
         state.error = null;
-        // Reset the form upon successful submission
         state.fullName = '';
         state.size = '';
         state.toppings = [];
