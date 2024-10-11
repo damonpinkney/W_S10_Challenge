@@ -17,7 +17,8 @@ const OrderList = () => {
     }
   }, [orderStatus, dispatch]);
 
-  const filteredOrders = filter === 'All' ? orders : orders.filter((order) => order.size === filter);
+  const filteredOrders =
+    filter === 'All' ? orders : orders.filter((order) => order.size === filter);
 
   let content;
 
@@ -27,12 +28,17 @@ const OrderList = () => {
     if (filteredOrders.length > 0) {
       content = (
         <ol>
-          {filteredOrders.map((order) => (
-            <li key={order.id}>
-              <strong>{order.customer}</strong> ordered a size {order.size} pizza with{' '}
-              {order.toppings ? order.toppings.join(', ') : 'no toppings'}
-            </li>
-          ))}
+          {filteredOrders.map((order) => {
+            const toppingsCount = order.toppings ? order.toppings.length : 0;
+            return (
+              <li key={order.id}>
+                <strong>{order.customer}</strong> ordered a size {order.size} pizza with{' '}
+                {toppingsCount === 0
+                  ? 'no toppings'
+                  : `${toppingsCount} topping${toppingsCount > 1 ? 's' : ''}`}
+              </li>
+            );
+          })}
         </ol>
       );
     } else {
